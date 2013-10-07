@@ -3,9 +3,9 @@ __author__ = 'clipo'
 import RPi.GPIO as GPIO
 from time import sleep
 import LPD8806
-import pygame
 import time
 import random
+from subprocess import call
 
 led = LPD8806.strand()
 GPIO.setmode(GPIO.BCM)
@@ -28,16 +28,8 @@ GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-pygame.mixer.init()
-global state
-state=0
-
-def readWAVFiles():
-    wavfiles=[]
-    for f in sounds:
-        loadfile=pygame.mixer.music.load(f)
-	wavfiles.append(loadfile)
-    return wavfiles
+global stateValue
+stateValue=0
 
 def quit():
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
@@ -48,10 +40,8 @@ def button1(channel):
     rand=random.randrange(0,5)
     alist=["happy.wav","happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]	
     file="./sounds/"+alist[rand]
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
-    pygame.mixer.music.load("./sounds/iamarobot.wav")
-    pygame.mixer.music.play()
+    call(file)
+
 
 # this will run in another thread when our event is detected
 def button2(channel):
@@ -59,8 +49,7 @@ def button2(channel):
     rand=random.randrange(0,9)
     blist=["beepboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepbeep.wav","beep.wav","countdwn.wav"]	
     file="./sounds/"+blist[rand]
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
+    call(file)
 
 # this will run in another thread when our event is detected
 def button3(channel):
@@ -68,16 +57,16 @@ def button3(channel):
     rand=random.randrange(0,10)
     clist=["affirmative2.wav","error.wav","hello.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","iamrobot3.wav","robots.wav","iamrobot5.wav"]	
     file="./sounds/"+clist[rand]
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
+    call(file)
+
 
 # this will run in another thread when our event is detected
 def button4(channel):
     print "Beep 4\n"
     rand=random.randrange(0,len(list))
     file="./sounds/"+list[rand]
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
+    call(file)
+
 
 # this will run in another thread when our event is detected
 def button5(channel):
@@ -85,16 +74,16 @@ def button5(channel):
     rand=random.randrange(0,4)
     dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]	
     file="./sounds/"+dlist[rand]
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
-    if state == 0:
+    call(file)
+
+    if stateValue == 0:
         for angle in range(0, 180):
             setServo(angle)
-        state=1
+        stateValue=1
     else:
         for angle in range(0, 180):
             setServo(180 - angle)
-        state=0
+        stateValue=0
 
 def set(property, value):
     try:
