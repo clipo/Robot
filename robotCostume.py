@@ -48,6 +48,7 @@ def button1(channel):
     rand=random.randrange(0,5)
     alist=["happy.wav","happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]	
     file="./sounds/"+alist[rand]
+	os.system("aplay ./sounds/trickortreat.wav")
     pygame.mixer.music.load(file)
     pygame.mixer.music.play()
     pygame.mixer.music.load("./sounds/iamarobot.wav")
