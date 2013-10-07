@@ -107,7 +107,7 @@ GPIO.add_event_detect(23, GPIO.FALLING, callback=lambda x: button4(), bouncetime
 GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
 
 def keycheck():
-    ch = getch()
+    ch = getch.getch()
     if ch == '\x03':
         quit()
     elif ch=='q':
