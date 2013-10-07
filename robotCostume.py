@@ -10,6 +10,8 @@ import time
 led = LPD8806.strand()
 GPIO.setmode(GPIO.BCM)
 
+#print "Version: ",GPIO.VERSION
+
 # GPIO 23 set up as input. It is pulled up to stop false signals
 GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -80,12 +82,11 @@ def setServo(angle):
 # else is happening in the program, the function "my_callback" will be run
 # It will happen even while the program is waiting for
 # a falling edge on the other button.
-GPIO.add_event_detect(20, GPIO.RISING, callback=button1)
-GPIO.add_event_detect(21, GPIO.RISING, callback=button2)
-GPIO.add_event_detect(22, GPIO.RISING, callback=button3)
-GPIO.add_event_detect(23, GPIO.RISING, callback=button4)
-GPIO.add_event_detect(24, GPIO.RISING, callback=button5)
-
+GPIO.add_event_detect(20, GPIO.FALLING, callback=lambda x: button1(), bouncetime=2000)
+GPIO.add_event_detect(21, GPIO.FALLING, callback=lambda x: button2(), bouncetime=2000)
+GPIO.add_event_detect(22, GPIO.FALLING, callback=lambda x: button3(), bouncetime=2000)
+GPIO.add_event_detect(23, GPIO.FALLING, callback=lambda x: button4(), bouncetime=2000)
+GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
 
 while True:
     for i in range(5):
