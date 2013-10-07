@@ -18,7 +18,6 @@ sounds=["affirmative2.wav",
 "beepbeepbeepbeep.wav","beepboop.wav","candycorn.wav","greatpumpkin.wav","imarobot4.wav","imrobot.wav","peep2.wav","scifi.wav",
 "beepbeep.wav","bleep.wav","countdwn.wav","happyhalloween.wav","imarobot5.wav","peep.wav","trickortreat3.wav"]
 
-#print "Version: ",GPIO.VERSION
 
 # GPIO 23 set up as input. It is pulled up to stop false signals
 GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -32,6 +31,13 @@ GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 pygame.mixer.init()
 global state
 state=0
+
+def readWAVFiles():
+    wavfiles=[]
+    for f in sounds:
+        loadfile=pygame.mixer.music.load(f)
+	wavfiles.append(loadfile)
+    return wavfiles
 
 def quit():
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
