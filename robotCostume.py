@@ -6,6 +6,7 @@ import LPD8806
 import time
 import random
 from subprocess import call
+import getch
 
 led = LPD8806.strand()
 GPIO.setmode(GPIO.BCM)
@@ -66,7 +67,6 @@ def button4(channel):
     file="./sounds/"+list[rand]
     call(file)
 
-
 # this will run in another thread when our event is detected
 def button5(channel):
     print "Beep 5\n"
@@ -106,8 +106,17 @@ GPIO.add_event_detect(22, GPIO.FALLING, callback=lambda x: button3(), bouncetime
 GPIO.add_event_detect(23, GPIO.FALLING, callback=lambda x: button4(), bouncetime=2000)
 GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
 
+def keycheck():
+    ch = getch()
+    if ch == '\x03':
+        quit()
+    elif ch=='q':
+        quit()
+
 while True:
+    keycheck()
     for i in range(5):
+        keycheck()
         led.fill(255, 0, 0)
         led.update()
         sleep(0.3)
@@ -117,6 +126,10 @@ while True:
         led.fill(0, 0, 255)
         led.update()
         sleep(0.3)
+    keycheck()
     for i in range(300):
+        keycheck()
         led.wheel()
         led.update()
+    keycheck()
+
