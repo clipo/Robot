@@ -8,11 +8,18 @@ import random
 from subprocess import call
 import getch
 import os
+from Adafruit_VCNL4000 import VCNL4000
+import time
+from Adafruit_PWM_Servo_Driver import PWM
 
+pwm = PWM(0x40, debug=True)
+vcnl = VCNL4000(0x13)
 led = LPD8806.strand()
 GPIO.setmode(GPIO.BCM)
 os.system("amixer set PCM -- -2200")
 os.system("amixer cset numid=3 1")
+servoMin = 150  # Min pulse length out of 4096
+servoMax = 4000  # Max pulse length out of 4096
 
 directory = "./sounds/"
 sounds=["affirmative2.wav",
@@ -30,7 +37,17 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+def setServoPulse(channel, pulse):
+  pulseLength = 1000000                   # 1,000,000 us per second
+  pulseLength /= 60                       # 60 Hz
+  print "%d us per period" % pulseLength
+  pulseLength /= 4096                     # 12 bits of resolution
+  print "%d us per bit" % pulseLength
+  pulse *= 1000
+  pulse /= pulseLength
+  pwm.setPWM(channel, 0, pulse)
 
+pwm.setPWMFreq(60)
 
 def quit():
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
@@ -80,12 +97,10 @@ def button5():
         global stateValue
         stateValue=0
     if stateValue == 0:
-        for angle in range(0, 180):
-            setServo(angle)
+        pwm.setPWM(0,0,servoMin)
         stateValue=1
     else:
-        for angle in range(0, 180):
-            setServo(180 - angle)
+        pwm.setPWM(0,0,servoMax)  
         stateValue=0
 
 def set(property, value):
@@ -104,13 +119,14 @@ def setServo(angle):
 # else is happening in the program, the function "my_callback" will be run
 # It will happen even while the program is waiting for
 # a falling edge on the other button.
-#GPIO.add_event_detect(17, GPIO.FALLING, callback=lambda x: button1(), bouncetime=2000)
-#GPIO.add_event_detect(22, GPIO.FALLING, callback=lambda x: button2(), bouncetime=2000)
+GPIO.add_event_detect(17, GPIO.FALLING, callback=lambda x: button1(), bouncetime=2000)
+GPIO.add_event_detect(22, GPIO.FALLING, callback=lambda x: button2(), bouncetime=2000)
 GPIO.add_event_detect(23, GPIO.FALLING, callback=lambda x: button3(), bouncetime=2000)
-GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button4(), bouncetime=500)
-GPIO.add_event_detect(25, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
+GPIO.add_event_detect(25, GPIO.FALLING, callback=lambda x: button4(), bouncetime=500)
+GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
 stateValue=1
 while True:
+    print "Data from proximity sensor", vcnl.read_proximity()
     for i in range(5):
         led.fill(255, 0, 0)
         led.update()
