@@ -25,15 +25,12 @@ sounds=["affirmative2.wav",
 
 # GPIO 23 set up as input. It is pulled up to stop false signals
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-#GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-global stateValue
-stateValue=0
 
 def quit():
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
@@ -77,6 +74,11 @@ def button5():
     file="aplay ./sounds/"+dlist[rand]
     os.system(file)
 
+    try:
+        stateValue
+    except NameError:
+        global stateValue
+        stateValue=0
     if stateValue == 0:
         for angle in range(0, 180):
             setServo(angle)
@@ -103,11 +105,11 @@ def setServo(angle):
 # It will happen even while the program is waiting for
 # a falling edge on the other button.
 #GPIO.add_event_detect(17, GPIO.FALLING, callback=lambda x: button1(), bouncetime=2000)
-#GPIO.add_event_detect(20, GPIO.FALLING, callback=lambda x: button2(), bouncetime=2000)
-#GPIO.add_event_detect(22, GPIO.FALLING, callback=lambda x: button3(), bouncetime=2000)
-GPIO.add_event_detect(23, GPIO.FALLING, callback=lambda x: button4(), bouncetime=500)
-#GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
-
+#GPIO.add_event_detect(22, GPIO.FALLING, callback=lambda x: button2(), bouncetime=2000)
+GPIO.add_event_detect(23, GPIO.FALLING, callback=lambda x: button3(), bouncetime=2000)
+GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button4(), bouncetime=500)
+GPIO.add_event_detect(25, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
+stateValue=1
 while True:
     for i in range(5):
         led.fill(255, 0, 0)
