@@ -93,7 +93,7 @@ def button3():
     time_now = time.time()
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter = 1
-        p#rint "Beep 3"
+        #print "Beep 3"
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","imarobot5.wav","imarobot4.wav"]
         #clist=["imrobot3.wav"]
         rand=random.randrange(0,len(clist))
