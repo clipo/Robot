@@ -37,6 +37,7 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 time_stamp = time.time()
+counter =0
 
 def setServoPulse(channel, pulse):
   pulseLength = 1000000                   # 1,000,000 us per second
@@ -57,7 +58,9 @@ def quit():
 def button1():
     global time_stamp       # put in to debounce
     time_now = time.time()
-    if (time_now - time_stamp) >= 0.3:
+    global counter
+    if (time_now - time_stamp and counter==0) >= 0.3:
+        counter=1
         print "Beep 1\n"
         alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]
         alist=["happyhalloween.wav"]
@@ -65,12 +68,15 @@ def button1():
         file="aplay ./sounds/"+alist[rand]
         os.system(file)
     time_stamp = time_now
+    counter=0
 
 # this will run in another thread when our event is detected
 def button2():
     global time_stamp       # put in to debounce
     time_now = time.time()
-    if (time_now - time_stamp) >= 0.3:
+    global counter
+    if (time_now - time_stamp and counter==0) >= 0.3:
+        counter =1
         print "Beep 2\n"
         blist=["beepboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepbeep.wav","beep.wav","countdwn.wav"]
         blist=["beepboopboop2.wav"]
@@ -78,12 +84,14 @@ def button2():
         file="aplay ./sounds/"+blist[rand]
         os.system(file)
     time_stamp = time_now
-
+    counter = 0
 # this will run in another thread when our event is detected
 def button3():
     global time_stamp       # put in to debounce
+    global counter
     time_now = time.time()
-    if (time_now - time_stamp) >= 0.3:
+    if (time_now - time_stamp and counter==0) >= 0.3:
+        counter = 1
         print "Beep 3\n"
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","iamarobot5.wav","iamarobot4.wav"]
         clist=["imarobot3.wav"]
@@ -91,23 +99,29 @@ def button3():
         file="aplay ./sounds/"+clist[rand]
         os.system(file)
     time_stamp = time_now
+    counter = 0
 
 # this will run in another thread when our event is detected
 def button4():
     global time_stamp       # put in to debounce
     time_now = time.time()
-    if (time_now - time_stamp) >= 0.3:
+    global counter
+    if (time_now - time_stamp and counter==0) >= 0.3:
+        counter=1
         print "Beep 4\n"
         rand=random.randrange(0,len(sounds))
         file="aplay ./sounds/"+sounds[rand]
         os.system(file)
     time_stamp = time_now
+    counter=0
 
 # this will run in another thread when our event is detected
 def button5():
     global time_stamp       # put in to debounce
     time_now = time.time()
-    if (time_now - time_stamp) >= 0.3:
+    global counter
+    if (time_now - time_stamp and counter==0) >= 0.3:
+        counter=1
         print "Beep 5\n"
         dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]
         dlist=["trickortreat3.wav"]
@@ -127,6 +141,7 @@ def button5():
             pwm.setPWM(0,0,servoMax)
             stateValue=0
     time_stamp = time_now
+    counter =0 
 
 def set(property, value):
     try:
