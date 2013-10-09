@@ -124,7 +124,7 @@ def button5():
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter=1
         print "Beep 5\n"
-        dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]
+        dlist=["trortr.wav","trickortreat2.wav","trickortreat.wav","gimmesomecandy.wav"]
         #dlist=["trickortreat3.wav"]
         rand=random.randrange(0,len(dlist))
         file="aplay ./sounds/"+dlist[rand]
