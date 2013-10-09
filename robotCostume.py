@@ -109,7 +109,7 @@ def button4():
     global counter
     if (time_now - time_stamp and counter==0) >= 1:
         counter = 1
-        #print "Beep 4"
+        print "Beep 4"
         rand=random.randrange(0,len(sounds))
         file="aplay ./sounds/"+sounds[rand]
         os.system(file)
