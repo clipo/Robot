@@ -61,7 +61,7 @@ def button1():
     global counter
     if (time_now - time_stamp and counter==0) >= 0.3:
         counter=1
-        #print "Beep 1"
+        print "Beep 1"
         alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]
         #alist=["happyhalloween.wav"]
         rand=random.randrange(0,len(alist))
@@ -77,7 +77,7 @@ def button2():
     global counter
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter =1
-        #print "Beep 2"
+        print "Beep 2"
         blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","countdwn.wav"]
         #blist=["beepboopboop2.wav"]
         rand=random.randrange(0,len(blist))
@@ -93,7 +93,7 @@ def button3():
     time_now = time.time()
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter = 1
-        #print "Beep 3"
+        print "Beep 3"
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","imarobot5.wav","imarobot4.wav"]
         #clist=["imrobot3.wav"]
         rand=random.randrange(0,len(clist))
@@ -123,7 +123,7 @@ def button5():
     global counter
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter=1
-        #print "Beep 5"
+        print "Beep 5"
         dlist=["trortr.wav","trickortreat2.wav","trickortreat.wav","gimmesomecandy.wav"]
         #dlist=["trickortreat3.wav"]
         rand=random.randrange(0,len(dlist))
