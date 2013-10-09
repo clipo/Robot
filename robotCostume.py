@@ -75,10 +75,10 @@ def button2():
     global time_stamp       # put in to debounce
     time_now = time.time()
     global counter
-    if (time_now - time_stamp and counter==0) >= 0.5:
+    if (time_now - time_stamp and counter==0) >= 1:
         counter =1
         print "Beep 2"
-        blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","countdwn.wav"]
+        blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","countdwn.wav"]
         #blist=["beepboopboop2.wav"]
         rand=random.randrange(0,len(blist))
         file="aplay ./sounds/"+blist[rand]
