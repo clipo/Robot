@@ -27,7 +27,7 @@ sounds=["affirmative2.wav",
 "blip2.wav","error.wav","hello.wav","imrobot2.wav","lowbeepboop.wav","robotcom.wav","trickortreat.wav",
 "affirmative.wav","beepboopboopboop.wav","blip.wav","gimmesomecandy.wav","iamrobot.wav","imrobot3.wav","merrychristmas.wav","robots.wav","trortr.wav",
 "beepbeepbeepbeep.wav","beepboop.wav","candycorn.wav","greatpumpkin.wav","imarobot4.wav","imrobot.wav","peep2.wav","scifi.wav",
-"beepbeep.wav","bleep.wav","countdwn.wav","happyhalloween.wav","imarobot5.wav","peep.wav","trickortreat3.wav"]
+"beepbeep.wav","bleep.wav","countdwn.wav","happyhalloween.wav","imarobot5.wav","peep.wav","trickortreat2.wav"]
 
 
 # GPIO 23 set up as input. It is pulled up to stop false signals
@@ -107,8 +107,8 @@ def button4():
     global time_stamp       # put in to debounce
     time_now = time.time()
     global counter
-    if (time_now - time_stamp and counter==0) >= 0.5:
-        counter=1
+    if (time_now - time_stamp and counter==0) >= 1:
+        counter = 1
         print "Beep 4\n"
         rand=random.randrange(0,len(sounds))
         file="aplay ./sounds/"+sounds[rand]
