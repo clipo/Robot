@@ -63,7 +63,7 @@ def button1():
         counter=1
         print "Beep 1\n"
         alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]
-        alist=["happyhalloween.wav"]
+        #alist=["happyhalloween.wav"]
         rand=random.randrange(0,len(alist))
         file="aplay ./sounds/"+alist[rand]
         os.system(file)
@@ -78,8 +78,8 @@ def button2():
     if (time_now - time_stamp and counter==0) >= 0.3:
         counter =1
         print "Beep 2\n"
-        blist=["beepboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepbeep.wav","beep.wav","countdwn.wav"]
-        blist=["beepboopboop2.wav"]
+        blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","beep.wav","countdwn.wav"]
+        #blist=["beepboopboop2.wav"]
         rand=random.randrange(0,len(blist))
         file="aplay ./sounds/"+blist[rand]
         os.system(file)
@@ -94,7 +94,7 @@ def button3():
         counter = 1
         print "Beep 3\n"
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","iamarobot5.wav","iamarobot4.wav"]
-        clist=["imarobot3.wav"]
+        #clist=["imrobot3.wav"]
         rand=random.randrange(0,len(clist))
         file="aplay ./sounds/"+clist[rand]
         os.system(file)
@@ -124,7 +124,7 @@ def button5():
         counter=1
         print "Beep 5\n"
         dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]
-        dlist=["trickortreat3.wav"]
+        #dlist=["trickortreat3.wav"]
         rand=random.randrange(0,len(dlist))
         file="aplay ./sounds/"+dlist[rand]
         os.system(file)
@@ -141,7 +141,7 @@ def button5():
             pwm.setPWM(0,0,servoMax)
             stateValue=0
     time_stamp = time_now
-    counter =0 
+    counter =0
 
 def set(property, value):
     try:
