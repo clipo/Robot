@@ -83,7 +83,8 @@ def button3():
     time_now = time.time()
     if (time_now - time_stamp) >= 0.3:
         print "Beep 3\n"
-        clist=["affirmative2.wav","error.wav","hello.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","iamrobot3.wav","robots.wav","iamrobot5.wav"]
+        clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","iamarobot5.wav","iamarobot4.wav"]
+
         rand=random.randrange(0,len(clist))
         file="aplay ./sounds/"+clist[rand]
         os.system(file)
