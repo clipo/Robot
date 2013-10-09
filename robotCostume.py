@@ -36,6 +36,7 @@ GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+time_stamp = time.time()
 
 def setServoPulse(channel, pulse):
   pulseLength = 1000000                   # 1,000,000 us per second
@@ -54,54 +55,74 @@ def quit():
 
 # this will run in another thread when our event is detected
 def button1():
-    print "Beep 1\n"
-    alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]	
-    rand=random.randrange(0,len(alist))
-    file="aplay ./sounds/"+alist[rand]
-    os.system(file)
+    global time_stamp       # put in to debounce
+    time_now = time.time()
+    if (time_now - time_stamp) >= 0.3:
+        print "Beep 1\n"
+        alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]
+        rand=random.randrange(0,len(alist))
+        file="aplay ./sounds/"+alist[rand]
+        os.system(file)
+    time_stamp = time_now
 
 # this will run in another thread when our event is detected
 def button2():
-    print "Beep 2\n"
-    blist=["beepboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepbeep.wav","beep.wav","countdwn.wav"]	
-    rand=random.randrange(0,len(blist))
-    file="aplay ./sounds/"+blist[rand]
-    os.system(file)
+    global time_stamp       # put in to debounce
+    time_now = time.time()
+    if (time_now - time_stamp) >= 0.3:
+        print "Beep 2\n"
+        blist=["beepboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepbeep.wav","beep.wav","countdwn.wav"]
+        rand=random.randrange(0,len(blist))
+        file="aplay ./sounds/"+blist[rand]
+        os.system(file)
+    time_stamp = time_now
 
 # this will run in another thread when our event is detected
 def button3():
-    print "Beep 3\n"
-    clist=["affirmative2.wav","error.wav","hello.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","iamrobot3.wav","robots.wav","iamrobot5.wav"]	
-    rand=random.randrange(0,len(clist))
-    file="aplay ./sounds/"+clist[rand]
-    os.system(file)
+    global time_stamp       # put in to debounce
+    time_now = time.time()
+    if (time_now - time_stamp) >= 0.3:
+        print "Beep 3\n"
+        clist=["affirmative2.wav","error.wav","hello.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","iamrobot3.wav","robots.wav","iamrobot5.wav"]
+        rand=random.randrange(0,len(clist))
+        file="aplay ./sounds/"+clist[rand]
+        os.system(file)
+    time_stamp = time_now
 
 # this will run in another thread when our event is detected
 def button4():
-    print "Beep 4\n"
-    rand=random.randrange(0,len(sounds))
-    file="aplay ./sounds/"+sounds[rand]
-    os.system(file)
+    global time_stamp       # put in to debounce
+    time_now = time.time()
+    if (time_now - time_stamp) >= 0.3:
+        print "Beep 4\n"
+        rand=random.randrange(0,len(sounds))
+        file="aplay ./sounds/"+sounds[rand]
+        os.system(file)
+    time_stamp = time_now
 
 # this will run in another thread when our event is detected
 def button5():
-    print "Beep 5\n"
-    dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]	
-    rand=random.randrange(0,len(dlist))
-    file="aplay ./sounds/"+dlist[rand]
-    os.system(file)
+    global time_stamp       # put in to debounce
+    time_now = time.time()
+    if (time_now - time_stamp) >= 0.3:
+        print "Beep 5\n"
+        dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]
+        rand=random.randrange(0,len(dlist))
+        file="aplay ./sounds/"+dlist[rand]
+        os.system(file)
 
-    try:
-        stateValue
-    except NameError:
-        global stateValue
-        stateValue=0
-    if stateValue == 0:
-        pwm.setPWM(0,0,servoMin)
-        stateValue=1
-    else:
-        pwm.setPWM(0,0,servoMax)  
-        stateValue=0
+        try:
+            stateValue
+        except NameError:
+            global stateValue
+            stateValue=0
+        if stateValue == 0:
+            pwm.setPWM(0,0,servoMin)
+            stateValue=1
+        else:
+            pwm.setPWM(0,0,servoMax)
+            stateValue=0
+    time_stamp = time_now
 
 def set(property, value):
     try:
