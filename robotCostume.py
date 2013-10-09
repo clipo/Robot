@@ -61,7 +61,7 @@ def button1():
     global counter
     if (time_now - time_stamp and counter==0) >= 0.3:
         counter=1
-        print "Beep 1\n"
+        #print "Beep 1"
         alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]
         #alist=["happyhalloween.wav"]
         rand=random.randrange(0,len(alist))
@@ -77,7 +77,7 @@ def button2():
     global counter
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter =1
-        print "Beep 2\n"
+        #print "Beep 2"
         blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","countdwn.wav"]
         #blist=["beepboopboop2.wav"]
         rand=random.randrange(0,len(blist))
@@ -93,7 +93,7 @@ def button3():
     time_now = time.time()
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter = 1
-        print "Beep 3\n"
+        p#rint "Beep 3"
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","imarobot5.wav","imarobot4.wav"]
         #clist=["imrobot3.wav"]
         rand=random.randrange(0,len(clist))
@@ -109,7 +109,7 @@ def button4():
     global counter
     if (time_now - time_stamp and counter==0) >= 1:
         counter = 1
-        print "Beep 4\n"
+        #print "Beep 4"
         rand=random.randrange(0,len(sounds))
         file="aplay ./sounds/"+sounds[rand]
         os.system(file)
@@ -123,7 +123,7 @@ def button5():
     global counter
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter=1
-        print "Beep 5\n"
+        #print "Beep 5"
         dlist=["trortr.wav","trickortreat2.wav","trickortreat.wav","gimmesomecandy.wav"]
         #dlist=["trickortreat3.wav"]
         rand=random.randrange(0,len(dlist))
@@ -167,19 +167,19 @@ GPIO.add_event_detect(25, GPIO.FALLING, callback=lambda x: button4(), bouncetime
 GPIO.add_event_detect(24, GPIO.FALLING, callback=lambda x: button5(), bouncetime=2000)
 stateValue=1
 while True:
-    print "Data from proximity sensor", vcnl.read_proximity()
+    #print "Data from proximity sensor", vcnl.read_proximity()
     for i in range(5):
         led.fill(255, 0, 0)
         led.update()
-        print "Data from proximity sensor", vcnl.read_proximity()
+        #print "Data from proximity sensor", vcnl.read_proximity()
         sleep(0.3)
         led.fill(0, 255, 0)
         led.update()
-        print "Data from proximity sensor", vcnl.read_proximity()
+        #print "Data from proximity sensor", vcnl.read_proximity()
         sleep(0.3)
         led.fill(0, 0, 255)
         led.update()
-        print "Data from proximity sensor", vcnl.read_proximity()
+        #print "Data from proximity sensor", vcnl.read_proximity()
         sleep(0.3)
    # for i in range(300):
    #     led.wheel()
