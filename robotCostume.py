@@ -75,22 +75,23 @@ def button2():
     global time_stamp       # put in to debounce
     time_now = time.time()
     global counter
-    if (time_now - time_stamp and counter==0) >= 0.3:
+    if (time_now - time_stamp and counter==0) >= 0.5:
         counter =1
         print "Beep 2\n"
-        blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","beep.wav","countdwn.wav"]
+        blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","countdwn.wav"]
         #blist=["beepboopboop2.wav"]
         rand=random.randrange(0,len(blist))
         file="aplay ./sounds/"+blist[rand]
         os.system(file)
     time_stamp = time_now
     counter = 0
+
 # this will run in another thread when our event is detected
 def button3():
     global time_stamp       # put in to debounce
     global counter
     time_now = time.time()
-    if (time_now - time_stamp and counter==0) >= 0.3:
+    if (time_now - time_stamp and counter==0) >= 0.5:
         counter = 1
         print "Beep 3\n"
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","imarobot5.wav","imarobot4.wav"]
@@ -106,7 +107,7 @@ def button4():
     global time_stamp       # put in to debounce
     time_now = time.time()
     global counter
-    if (time_now - time_stamp and counter==0) >= 0.3:
+    if (time_now - time_stamp and counter==0) >= 0.5:
         counter=1
         print "Beep 4\n"
         rand=random.randrange(0,len(sounds))
@@ -120,7 +121,7 @@ def button5():
     global time_stamp       # put in to debounce
     time_now = time.time()
     global counter
-    if (time_now - time_stamp and counter==0) >= 0.3:
+    if (time_now - time_stamp and counter==0) >= 0.5:
         counter=1
         print "Beep 5\n"
         dlist=["trortr.wav","trickortreat3.wav","trickortreat.wav","gimmesomecandy.wav"]
