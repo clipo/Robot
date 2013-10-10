@@ -21,7 +21,7 @@ os.system("amixer cset numid=3 1")
 servoMin = 150  # Min pulse length out of 4096
 servoMax = 4000  # Max pulse length out of 4096
 
-directory = "./sounds/"
+directory = "/home/pi/projects/Robot/sounds/"
 sounds=["affirmative2.wav",
 "beepboopboopboop2.wav",
 "blip2.wav","error.wav","hello.wav","imrobot2.wav","lowbeepboop.wav","robotcom.wav","trickortreat.wav",
