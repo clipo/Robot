@@ -19,7 +19,7 @@ GPIO.setmode(GPIO.BCM)
 os.system("amixer set PCM -- -2200")
 os.system("amixer cset numid=3 1")
 servoMin = 150  # Min pulse length out of 4096
-servoMax = 4000  # Max pulse length out of 4096
+servoMax = 3000  # Max pulse length out of 4096
 
 directory = "/home/pi/projects/Robot/sounds/"
 sounds=["affirmative2.wav",
