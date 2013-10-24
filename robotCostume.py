@@ -25,7 +25,7 @@ directory = "/home/pi/projects/Robot/sounds/"
 sounds=["affirmative2.wav",
 "beepboopboopboop2.wav",
 "blip2.wav","error.wav","hello.wav","imrobot2.wav","lowbeepboop.wav","robotcom.wav","trickortreat.wav",
-"affirmative.wav","beepboopboopboop.wav","blip.wav","gimmesomecandy.wav","iamrobot.wav","imrobot3.wav","merrychristmas.wav","robots.wav","trortr.wav",
+"affirmative.wav","beepboopboopboop.wav","blip.wav","gimmesomecandy.wav","iamrobot.wav","imrobot3.wav","robots.wav","trortr.wav",
 "beepbeepbeepbeep.wav","beepboop.wav","candycorn.wav","greatpumpkin.wav","imarobot4.wav","imrobot.wav","peep2.wav","scifi.wav",
 "beepbeep.wav","bleep.wav","countdwn.wav","happyhalloween.wav","imarobot5.wav","peep.wav","trickortreat2.wav"]
 
@@ -62,10 +62,10 @@ def button1():
     if (time_now - time_stamp and counter==0) >= 0.3:
         counter=1
         print "Beep 1"
-        alist=["happyhalloween.wav","merrychristmas.wav","candycorn.wav","greatpumpkin.wav"]
+        alist=["happyhalloween.wav","candycorn.wav","greatpumpkin.wav"]
         #alist=["happyhalloween.wav"]
         rand=random.randrange(0,len(alist))
-        file="aplay ./sounds/"+alist[rand]
+        file="aplay /home/pi/projects/Robot/sounds/"+alist[rand]
         os.system(file)
     time_stamp = time_now
     counter=0
@@ -81,7 +81,7 @@ def button2():
         blist=["beepboopboopboop2.wav","blip2.wav","lowbeepboop.wav","beepboopboopboop.wav","blip.wav","beepbeepbeepbeep.wav","beepboop.wav","countdwn.wav"]
         #blist=["beepboopboop2.wav"]
         rand=random.randrange(0,len(blist))
-        file="aplay ./sounds/"+blist[rand]
+        file="aplay /home/pi/projects/Robot/sounds/"+blist[rand]
         os.system(file)
     time_stamp = time_now
     counter = 0
@@ -97,7 +97,7 @@ def button3():
         clist=["affirmative2.wav","error.wav","hello.wav","imrobot.wav","imrobot2.wav","robotcom.wav","affirmative.wav","iamrobot.wav","imrobot2","imrobot3.wav","robots.wav","imarobot5.wav","imarobot4.wav"]
         #clist=["imrobot3.wav"]
         rand=random.randrange(0,len(clist))
-        file="aplay ./sounds/"+clist[rand]
+        file="aplay /home/pi/projects/Robot/sounds/"+clist[rand]
         os.system(file)
     time_stamp = time_now
     counter = 0
@@ -111,7 +111,7 @@ def button4():
         counter = 1
         print "Beep 4"
         rand=random.randrange(0,len(sounds))
-        file="aplay ./sounds/"+sounds[rand]
+        file="aplay /home/pi/projects/Robot/sounds/"+sounds[rand]
         os.system(file)
     time_stamp = time_now
     counter=0
@@ -124,11 +124,16 @@ def button5():
     if (time_now - time_stamp and counter==0) >= 0.5:
         counter=1
         print "Beep 5"
-        dlist=["trortr.wav","trickortreat2.wav","trickortreat.wav","gimmesomecandy.wav"]
+        dlist=["trortr.wav","trickortreat2.wav","trickortreat.wav"]
+        alist=["happyhalloween.wav"]
         #dlist=["trickortreat3.wav"]
         rand=random.randrange(0,len(dlist))
-        file="aplay ./sounds/"+dlist[rand]
-        os.system(file)
+	if stateValue==1:
+	    file="aplay /home/pi/projects/Robot/sounds/happyhalloween.wav"
+	else:
+            file="aplay /home/pi/projects/Robot/sounds/"+dlist[rand]
+        
+	os.system(file)
 
         try:
             stateValue
